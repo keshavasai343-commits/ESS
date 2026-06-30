@@ -1,4 +1,4 @@
-"""Seed the database with realistic sample data."""
+"""Seed the database with realistic sample data (India HR/Payroll)."""
 from datetime import date
 
 from app.database import SessionLocal, engine, Base
@@ -28,20 +28,20 @@ def seed():
         employee_id="EMP001",
         first_name="Sarah",
         last_name="Chen",
-        phone="+1-555-0101",
+        phone="+91 98765 43210",
         date_of_birth=date(1985, 3, 15),
         hire_date=date(2018, 6, 1),
         department="Engineering",
         designation="Engineering Manager",
         role="manager",
-        location="San Francisco",
+        location="Bengaluru",
         emergency_contact_name="Michael Chen",
-        emergency_contact_phone="+1-555-0102",
+        emergency_contact_phone="+91 98765 43211",
         emergency_contact_relation="Spouse",
-        bank_name="Chase",
+        bank_name="HDFC Bank",
         bank_account_number="****4521",
-        bank_ifsc="CHASUS33",
-        address="456 Oak Ave, San Francisco, CA 94102",
+        bank_ifsc="HDFC0001234",
+        address="Flat 302, Prestige Lakeside Habitat, Varthur, Bengaluru, Karnataka 560087",
     )
     db.add(manager)
     db.flush()
@@ -52,21 +52,21 @@ def seed():
         employee_id="EMP002",
         first_name="John",
         last_name="Doe",
-        phone="+1-555-0201",
+        phone="+91 98765 12345",
         date_of_birth=date(1992, 7, 22),
         hire_date=date(2021, 1, 15),
         department="Engineering",
         designation="Senior Software Engineer",
         role="employee",
         manager_id=manager.id,
-        location="San Francisco",
+        location="Bengaluru",
         emergency_contact_name="Jane Doe",
-        emergency_contact_phone="+1-555-0202",
+        emergency_contact_phone="+91 98765 12346",
         emergency_contact_relation="Sister",
-        bank_name="Bank of America",
+        bank_name="ICICI Bank",
         bank_account_number="****8832",
-        bank_ifsc="BOFAUS3N",
-        address="123 Main St, San Francisco, CA 94105",
+        bank_ifsc="ICIC0001234",
+        address="A-204, Sobha Dream Acres, Panathur, Bengaluru, Karnataka 560103",
     )
 
     emp2 = Employee(
@@ -75,53 +75,53 @@ def seed():
         employee_id="EMP003",
         first_name="Priya",
         last_name="Sharma",
-        phone="+1-555-0301",
+        phone="+91 98220 54321",
         date_of_birth=date(1990, 11, 8),
         hire_date=date(2020, 3, 10),
         department="Product",
         designation="Product Manager",
         role="employee",
         manager_id=manager.id,
-        location="New York",
+        location="Mumbai",
         emergency_contact_name="Raj Sharma",
-        emergency_contact_phone="+1-555-0302",
+        emergency_contact_phone="+91 98220 54322",
         emergency_contact_relation="Father",
-        bank_name="Wells Fargo",
+        bank_name="State Bank of India",
         bank_account_number="****6614",
-        bank_ifsc="WFBIUS6S",
-        address="789 Broadway, New York, NY 10003",
+        bank_ifsc="SBIN0001234",
+        address="601, Hiranandani Gardens, Powai, Mumbai, Maharashtra 400076",
     )
 
     emp3 = Employee(
-        email="alex.kim@company.com",
+        email="ananya.iyer@company.com",
         hashed_password=password,
         employee_id="EMP004",
-        first_name="Alex",
-        last_name="Kim",
-        phone="+1-555-0401",
+        first_name="Ananya",
+        last_name="Iyer",
+        phone="+91 99450 67890",
         date_of_birth=date(1995, 5, 30),
         hire_date=date(2022, 8, 20),
         department="Design",
         designation="UX Designer",
         role="employee",
         manager_id=manager.id,
-        location="Austin",
+        location="Hyderabad",
     )
 
     emp4 = Employee(
-        email="maria.garcia@company.com",
+        email="rahul.verma@company.com",
         hashed_password=password,
         employee_id="EMP005",
-        first_name="Maria",
-        last_name="Garcia",
-        phone="+1-555-0501",
+        first_name="Rahul",
+        last_name="Verma",
+        phone="+91 97171 22334",
         date_of_birth=date(1988, 9, 14),
         hire_date=date(2019, 11, 5),
         department="Engineering",
         designation="Staff Engineer",
         role="employee",
         manager_id=manager.id,
-        location="San Francisco",
+        location="Pune",
     )
 
     db.add_all([emp1, emp2, emp3, emp4])
@@ -129,9 +129,9 @@ def seed():
 
     # --- Leave balances for emp1 (John) ---
     db.add_all([
-        LeaveBalance(employee_id=emp1.id, leave_type="annual", total=20, used=5, pending=2),
-        LeaveBalance(employee_id=emp1.id, leave_type="sick", total=12, used=2, pending=0),
-        LeaveBalance(employee_id=emp1.id, leave_type="casual", total=7, used=1, pending=0),
+        LeaveBalance(employee_id=emp1.id, leave_type="annual", total=18, used=5, pending=2),
+        LeaveBalance(employee_id=emp1.id, leave_type="sick", total=10, used=2, pending=0),
+        LeaveBalance(employee_id=emp1.id, leave_type="casual", total=8, used=1, pending=0),
     ])
 
     # --- Leave requests for emp1 ---
@@ -156,39 +156,44 @@ def seed():
         ),
     ])
 
-    # --- Payslips for emp1 (last 3 months) ---
+    # --- Payslips for emp1 (last 3 months) — India payroll structure ---
     for month_str, pay_dt in [
-        ("2026-06", date(2026, 6, 28)),
-        ("2026-05", date(2026, 5, 28)),
-        ("2026-04", date(2026, 4, 28)),
+        ("2026-06", date(2026, 6, 30)),
+        ("2026-05", date(2026, 5, 31)),
+        ("2026-04", date(2026, 4, 30)),
     ]:
         ps = Payslip(
             employee_id=emp1.id, month=month_str, pay_date=pay_dt,
-            gross_earnings=9500.00, total_deductions=2850.00, net_pay=6650.00,
+            gross_earnings=158000.00, total_deductions=31600.00, net_pay=126400.00,
         )
         db.add(ps)
         db.flush()
         db.add_all([
-            PayslipItem(payslip_id=ps.id, category="earning", label="Basic Salary", amount=6000.00),
-            PayslipItem(payslip_id=ps.id, category="earning", label="Housing Allowance", amount=2000.00),
-            PayslipItem(payslip_id=ps.id, category="earning", label="Transport Allowance", amount=500.00),
-            PayslipItem(payslip_id=ps.id, category="earning", label="Performance Bonus", amount=1000.00),
-            PayslipItem(payslip_id=ps.id, category="deduction", label="Federal Tax", amount=1425.00),
-            PayslipItem(payslip_id=ps.id, category="deduction", label="State Tax", amount=570.00),
-            PayslipItem(payslip_id=ps.id, category="deduction", label="401(k)", amount=475.00),
-            PayslipItem(payslip_id=ps.id, category="deduction", label="Health Insurance", amount=380.00),
+            PayslipItem(payslip_id=ps.id, category="earning", label="Basic Salary", amount=79000.00),
+            PayslipItem(payslip_id=ps.id, category="earning", label="House Rent Allowance (HRA)", amount=31600.00),
+            PayslipItem(payslip_id=ps.id, category="earning", label="Special Allowance", amount=23700.00),
+            PayslipItem(payslip_id=ps.id, category="earning", label="Conveyance Allowance", amount=3700.00),
+            PayslipItem(payslip_id=ps.id, category="earning", label="Performance Bonus", amount=20000.00),
+            PayslipItem(payslip_id=ps.id, category="deduction", label="Income Tax (TDS)", amount=18500.00),
+            PayslipItem(payslip_id=ps.id, category="deduction", label="Provident Fund (PF)", amount=9480.00),
+            PayslipItem(payslip_id=ps.id, category="deduction", label="Professional Tax", amount=200.00),
+            PayslipItem(payslip_id=ps.id, category="deduction", label="Health Insurance Premium", amount=3420.00),
         ])
 
     # --- Benefits for emp1 ---
     db.add_all([
-        Benefit(employee_id=emp1.id, benefit_type="health", name="Medical Insurance",
-                description="PPO plan covering employee + dependents", amount=380.00, frequency="monthly"),
-        Benefit(employee_id=emp1.id, benefit_type="health", name="Dental Insurance",
-                description="Preventive + basic coverage", amount=45.00, frequency="monthly"),
-        Benefit(employee_id=emp1.id, benefit_type="pf", name="401(k) Match",
-                description="Company matches 100% up to 5%", amount=475.00, frequency="monthly"),
+        Benefit(employee_id=emp1.id, benefit_type="health", name="Group Mediclaim Insurance",
+                description="Family floater health cover for employee + dependents", amount=500000.00, frequency="annual"),
+        Benefit(employee_id=emp1.id, benefit_type="health", name="Personal Accident Cover",
+                description="Accidental death and disability coverage", amount=1000000.00, frequency="annual"),
+        Benefit(employee_id=emp1.id, benefit_type="pf", name="Provident Fund (Employer Contribution)",
+                description="12% of basic salary contributed by employer (EPFO)", amount=9480.00, frequency="monthly"),
+        Benefit(employee_id=emp1.id, benefit_type="pf", name="Gratuity",
+                description="Payable as per Payment of Gratuity Act after 5 years of service", amount=None, frequency=None),
+        Benefit(employee_id=emp1.id, benefit_type="allowance", name="Leave Travel Allowance (LTA)",
+                description="Tax-exempt travel reimbursement, claimable twice in a block of 4 years", amount=60000.00, frequency="annual"),
         Benefit(employee_id=emp1.id, benefit_type="allowance", name="Learning & Development",
-                description="Annual budget for courses and conferences", amount=2500.00, frequency="annual"),
+                description="Annual budget for courses, certifications and conferences", amount=50000.00, frequency="annual"),
     ])
 
     # --- Goals for emp1 ---

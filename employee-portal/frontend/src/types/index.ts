@@ -179,3 +179,38 @@ export interface TokenResponse {
   refresh_token: string;
   token_type: string;
 }
+
+export interface SignupRequest {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  department: string;
+  designation: string;
+  phone?: string;
+  location?: string;
+}
+
+export interface Attendance {
+  id: number;
+  date: string;
+  clock_in?: string;
+  clock_out?: string;
+  total_hours?: number;
+  status: string;
+}
+
+export interface AttendanceSummary {
+  days_present: number;
+  days_this_month: number;
+  avg_hours: number;
+}
+
+export interface Notification {
+  id: string;
+  type: string;
+  title: string;
+  message: string;
+  date: string;
+  read: boolean;
+}

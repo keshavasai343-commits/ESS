@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 import { useLogin } from "@/hooks/useAuth";
 
 const schema = z.object({
@@ -72,7 +73,14 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="text-center text-sm text-gray-500 mt-6">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-primary-600 font-medium hover:underline">
+            Create one
+          </Link>
+        </p>
+
+        <p className="text-center text-xs text-gray-400 mt-3">
           Demo: john.doe@company.com / password123
         </p>
       </div>

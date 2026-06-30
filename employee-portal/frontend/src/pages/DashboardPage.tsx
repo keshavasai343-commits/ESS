@@ -1,6 +1,6 @@
 import {
   CalendarDays,
-  DollarSign,
+  IndianRupee,
   Target,
   Users,
   TrendingUp,
@@ -10,6 +10,8 @@ import { useAuthStore } from "@/store/authStore";
 import { useLeaveBalances } from "@/hooks/useLeave";
 import { useGoals } from "@/hooks/usePerformance";
 import { Link } from "react-router-dom";
+
+const inr = (amount: number) => `₹${amount.toLocaleString("en-IN")}`;
 
 export default function DashboardPage() {
   const user = useAuthStore((s) => s.user);
@@ -29,8 +31,8 @@ export default function DashboardPage() {
     },
     {
       label: "Net Pay (Jun)",
-      value: "$6,650",
-      icon: DollarSign,
+      value: inr(126400),
+      icon: IndianRupee,
       color: "bg-green-50 text-green-600",
       link: "/pay",
     },
@@ -53,11 +55,16 @@ export default function DashboardPage() {
   const announcements = [
     {
       title: "Office Closed — Independence Day",
-      date: "Jul 4, 2026",
+      date: "Aug 15, 2026",
       type: "Holiday",
     },
     {
-      title: "Open Enrollment for Health Benefits",
+      title: "Office Closed — Raksha Bandhan",
+      date: "Aug 28, 2026",
+      type: "Holiday",
+    },
+    {
+      title: "Open Enrollment for Mediclaim Policy",
       date: "Jul 1–15, 2026",
       type: "Benefits",
     },
@@ -167,7 +174,7 @@ export default function DashboardPage() {
           to="/pay"
           className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md transition-shadow text-center"
         >
-          <DollarSign className="mx-auto text-green-600 mb-2" size={28} />
+          <IndianRupee className="mx-auto text-green-600 mb-2" size={28} />
           <p className="font-medium text-gray-900">View Payslip</p>
           <p className="text-xs text-gray-500 mt-1">Latest pay details</p>
         </Link>
@@ -177,7 +184,7 @@ export default function DashboardPage() {
         >
           <Target className="mx-auto text-purple-600 mb-2" size={28} />
           <p className="font-medium text-gray-900">Upload Document</p>
-          <p className="text-xs text-gray-500 mt-1">Tax forms, IDs, certificates</p>
+          <p className="text-xs text-gray-500 mt-1">PAN, Aadhaar, Form 16, certificates</p>
         </Link>
       </div>
     </div>

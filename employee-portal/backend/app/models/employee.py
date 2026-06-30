@@ -46,3 +46,4 @@ class Employee(Base):
     documents = relationship("Document", back_populates="employee")
     kudos_given = relationship("Kudos", back_populates="sender", foreign_keys="Kudos.sender_id")
     kudos_received = relationship("Kudos", back_populates="receiver", foreign_keys="Kudos.receiver_id")
+    attendance_records = relationship("Attendance", back_populates="employee")

@@ -87,8 +87,9 @@ export default function DocumentsPage() {
                 className="text-xs px-2 py-1 border border-gray-300 rounded outline-none"
               >
                 <option value="general">General</option>
-                <option value="tax">Tax</option>
-                <option value="id">ID Document</option>
+                <option value="pan">PAN Card</option>
+                <option value="aadhaar">Aadhaar Card</option>
+                <option value="form16">Form 16</option>
                 <option value="certificate">Certificate</option>
                 <option value="offer_letter">Offer Letter</option>
               </select>

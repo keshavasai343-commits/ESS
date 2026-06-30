@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   CalendarDays,
+  Clock,
   DollarSign,
   Target,
   Users,
@@ -14,6 +15,7 @@ import { useState } from "react";
 
 const links = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/attendance", icon: Clock, label: "Attendance" },
   { to: "/leave", icon: CalendarDays, label: "Leave" },
   { to: "/pay", icon: DollarSign, label: "Pay & Benefits" },
   { to: "/performance", icon: Target, label: "Performance" },

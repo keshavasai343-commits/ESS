@@ -189,7 +189,7 @@ export default function ProfilePage() {
                   <input {...register("bank_account_number")} className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm outline-none" />
                 </div>
                 <div>
-                  <label className="text-xs text-gray-500">IFSC / SWIFT</label>
+                  <label className="text-xs text-gray-500">IFSC Code</label>
                   <input {...register("bank_ifsc")} className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm outline-none" />
                 </div>
               </div>

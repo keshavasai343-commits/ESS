@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DollarSign, Download, Heart, PiggyBank, Gift } from "lucide-react";
+import { IndianRupee, Download, Heart, PiggyBank, Gift } from "lucide-react";
 import { usePayslips, usePayslip, useBenefits } from "@/hooks/usePayroll";
 
 const benefitIcons: Record<string, React.ElementType> = {
@@ -7,6 +7,8 @@ const benefitIcons: Record<string, React.ElementType> = {
   pf: PiggyBank,
   allowance: Gift,
 };
+
+const inr = (amount: number) => `₹${amount.toLocaleString("en-IN")}`;
 
 export default function PayPage() {
   const { data: payslips } = usePayslips();
@@ -49,19 +51,19 @@ export default function PayPage() {
                   <div className="bg-green-50 rounded-lg p-4 text-center">
                     <p className="text-sm text-green-600 font-medium">Gross Earnings</p>
                     <p className="text-2xl font-bold text-green-700">
-                      ${detail.gross_earnings.toLocaleString()}
+                      {inr(detail.gross_earnings)}
                     </p>
                   </div>
                   <div className="bg-red-50 rounded-lg p-4 text-center">
                     <p className="text-sm text-red-600 font-medium">Deductions</p>
                     <p className="text-2xl font-bold text-red-700">
-                      ${detail.total_deductions.toLocaleString()}
+                      {inr(detail.total_deductions)}
                     </p>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4 text-center">
                     <p className="text-sm text-blue-600 font-medium">Net Pay</p>
                     <p className="text-2xl font-bold text-blue-700">
-                      ${detail.net_pay.toLocaleString()}
+                      {inr(detail.net_pay)}
                     </p>
                   </div>
                 </div>
@@ -79,7 +81,7 @@ export default function PayPage() {
                         >
                           <span className="text-gray-600">{item.label}</span>
                           <span className="font-medium text-gray-900">
-                            ${item.amount.toLocaleString()}
+                            {inr(item.amount)}
                           </span>
                         </div>
                       ))}
@@ -97,7 +99,7 @@ export default function PayPage() {
                         >
                           <span className="text-gray-600">{item.label}</span>
                           <span className="font-medium text-red-600">
-                            -${item.amount.toLocaleString()}
+                            -{inr(item.amount)}
                           </span>
                         </div>
                       ))}
@@ -125,7 +127,7 @@ export default function PayPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-semibold text-gray-900">
-                      ${p.net_pay.toLocaleString()}
+                      {inr(p.net_pay)}
                     </span>
                     <Download size={16} className="text-gray-400" />
                   </div>
@@ -138,7 +140,7 @@ export default function PayPage() {
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-gray-900">Benefits</h2>
           {benefits?.map((b) => {
-            const Icon = benefitIcons[b.benefit_type] || DollarSign;
+            const Icon = benefitIcons[b.benefit_type] || IndianRupee;
             return (
               <div
                 key={b.id}
@@ -156,7 +158,7 @@ export default function PayPage() {
                 <p className="text-xs text-gray-500 mb-2">{b.description}</p>
                 {b.amount && (
                   <p className="text-sm font-semibold text-gray-900">
-                    ${b.amount.toLocaleString()}{" "}
+                    {inr(b.amount)}{" "}
                     <span className="text-xs text-gray-400 font-normal">
                       / {b.frequency}
                     </span>

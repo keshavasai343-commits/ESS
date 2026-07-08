@@ -125,7 +125,6 @@ export default function DashboardPage() {
                 key={a.title}
                 className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50"
               >
-                <div className="w-2 h-2 rounded-full bg-primary-500 mt-2 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-gray-900">{a.title}</p>
                   <p className="text-xs text-gray-500">

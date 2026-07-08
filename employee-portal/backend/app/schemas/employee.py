@@ -20,6 +20,7 @@ class EmployeeProfile(EmployeeBase):
     date_of_birth: date | None = None
     hire_date: date
     role: str
+    is_active: bool = True
     manager_name: str | None = None
     emergency_contact_name: str | None = None
     emergency_contact_phone: str | None = None

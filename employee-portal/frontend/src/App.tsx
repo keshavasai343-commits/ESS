@@ -8,10 +8,10 @@ import DashboardPage from "@/pages/DashboardPage";
 import AttendancePage from "@/pages/AttendancePage";
 import LeavePage from "@/pages/LeavePage";
 import PayPage from "@/pages/PayPage";
-import PerformancePage from "@/pages/PerformancePage";
 import DirectoryPage from "@/pages/DirectoryPage";
 import ProfilePage from "@/pages/ProfilePage";
 import DocumentsPage from "@/pages/DocumentsPage";
+import AdminPage from "@/pages/AdminPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,10 +40,10 @@ export default function App() {
             <Route path="/attendance" element={<AttendancePage />} />
             <Route path="/leave" element={<LeavePage />} />
             <Route path="/pay" element={<PayPage />} />
-            <Route path="/performance" element={<PerformancePage />} />
             <Route path="/directory" element={<DirectoryPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/documents" element={<DocumentsPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

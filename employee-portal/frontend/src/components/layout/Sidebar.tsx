@@ -4,28 +4,34 @@ import {
   CalendarDays,
   Clock,
   DollarSign,
-  Target,
   Users,
   User,
   FileText,
   ChevronLeft,
   ChevronRight,
+  ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore } from "@/store/authStore";
 
-const links = [
+const baseLinks = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/attendance", icon: Clock, label: "Attendance" },
   { to: "/leave", icon: CalendarDays, label: "Leave" },
   { to: "/pay", icon: DollarSign, label: "Pay & Benefits" },
-  { to: "/performance", icon: Target, label: "Performance" },
   { to: "/directory", icon: Users, label: "Directory" },
   { to: "/profile", icon: User, label: "My Profile" },
   { to: "/documents", icon: FileText, label: "Documents" },
 ];
 
+const managerLinks = [
+  { to: "/admin", icon: ShieldCheck, label: "Authorization" },
+];
+
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const { user } = useAuthStore();
+  const links = user?.role === "manager" ? [...baseLinks, ...managerLinks] : baseLinks;
 
   return (
     <aside
